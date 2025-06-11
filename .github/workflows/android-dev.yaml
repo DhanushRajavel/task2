@@ -30,8 +30,3 @@ jobs:
 
       - name: Build APK
         run: flutter build apk --debug --build-name=1.0.0 --build-number=1
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v2
-        with:
-          name: app-debug.apk
