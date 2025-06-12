@@ -35,4 +35,13 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: app-release.apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+          path: build/app/outputs/flutter-apk/app-release.apknp
+
+      - name: Upload to Firebase App Distribution
+        run: |
+          npm install -g firebase-tools
+          firebase appdistribution:distribute build/app/outputs/flutter-apk/app-release.apk \
+            --app 1:920920392338:android:3740cdcd872c09b35edc4b \
+            --token ${{ secrets.FIREBASE_TOKEN }} \
+            --groups YOUR_TESTER_GROUP \
+            --release-notes "Automated build from GitHub Actions"
